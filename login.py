@@ -3,7 +3,6 @@ import pandas as pd
 import os
 import streamlit as st
 from datetime import date, datetime, timedelta
-import winsound
 from helper import load_data, add_data, update_order_status,delete_order,supabase
 
 st.set_page_config(layout="wide", page_title="Tailor", page_icon="🪡")
@@ -20,6 +19,7 @@ def show_delivery_alert(delayed_df, urgent_df):
     
     # Optional Python beep (Windows only)
     try:
+        import winsound
         winsound.Beep(2500, 600)
     except Exception:
         pass
@@ -131,6 +131,7 @@ def login():
                             if add_data("orders.json", order_data, str(order_id)):
                                 st.toast(f"Order Added with {saved_count} images", duration="long")
                                 try:
+                                    import winsound
                                     winsound.Beep(2500, 600)
                                 except Exception:
                                     pass
@@ -185,6 +186,7 @@ def login():
                             if update_order_status("orders.json", int(or_id), new_status):
                                 st.success(f"Order Status updated to **{new_status}**!")
                                 try:
+                                    import winsound
                                     winsound.Beep(2500, 600)
                                 except Exception:
                                     pass
@@ -201,6 +203,7 @@ def login():
                             if delete_order("orders.json", int(or_id)):
                                 st.success(f"Order #{or_id} and its images have been deleted successfully!")
                                 try:
+                                    import winsound
                                     winsound.Beep(2500, 600)
                                 except Exception:
                                     pass
@@ -245,6 +248,7 @@ def login():
                             if add_data("clients.json", data, s_c_num):
                                 st.success("Client Updated Successfully!")
                                 try:
+                                    import winsound
                                     winsound.Beep(2500, 600)
                                 except Exception:
                                     pass
@@ -275,6 +279,7 @@ def login():
                             if add_data("clients.json", data, s_c_num):
                                 st.success("New Client Added!")
                                 try:
+                                    import winsound
                                     winsound.Beep(2500, 600)
                                 except Exception:
                                     pass
