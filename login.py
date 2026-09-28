@@ -84,8 +84,8 @@ def login():
                 res = clients.get(c_num)
                 if res:
                     col1, col2, col3 = st.columns(3)
-                    with col1:
-                        st.image("measure_t.png")
+                    #with col1:
+                       # st.image("measure_t.png")
                     with col2:
                         st.markdown("* All Measurements In INCHES")
                         st.table(res)
