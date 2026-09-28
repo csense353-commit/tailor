@@ -143,7 +143,7 @@ def login():
                             }
                             
                             if add_data("orders.json", order_data, str(order_id)):
-                                st.toast(f"Order Added with {saved_count} images", duration="long")
+                                st.toast(f"✅ Order Added with {saved_count} images", duration="long")
                                 try:
                                     import winsound
                                     winsound.Beep(2500, 600)
