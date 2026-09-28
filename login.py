@@ -227,8 +227,8 @@ def login():
                 res = clients.get(s_c_num)
                 if res:
                     col1, col2 = st.columns(2)
-                    with col1:
-                        st.image("measure_t.png")
+                   # with col1:
+                      #  st.image("measure_t.png")
                     with col2:
                         st.markdown("* All Measurements In INCHES")
                         # Added s_c_num to keys so they refresh when the mobile number changes
