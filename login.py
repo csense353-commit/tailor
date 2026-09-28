@@ -4,7 +4,22 @@ import os
 import streamlit as st
 from datetime import date, datetime, timedelta
 from helper import load_data, add_data, update_order_status,delete_order,supabase
+import base64
 
+def play_sound():
+    with open("alert.mp3", "rb") as f:
+        audio_bytes = f.read()
+
+    audio_base64 = base64.b64encode(audio_bytes).decode()
+
+    st.markdown(
+        f"""
+        <audio autoplay>
+            <source src="data:audio/mp3;base64,{audio_base64}" type="audio/mp3">
+        </audio>
+        """,
+        unsafe_allow_html=True
+    )
 st.set_page_config(layout="wide", page_title="Tailor", page_icon="🪡")
 
 @st.dialog("⚠️ Urgent & Delayed Deliveries Alert!", dismissible=False, width="large")
@@ -19,8 +34,7 @@ def show_delivery_alert(delayed_df, urgent_df):
     
     # Optional Python beep (Windows only)
     try:
-        import winsound
-        winsound.Beep(2500, 600)
+        play_sound()
     except Exception:
         pass
     
@@ -84,8 +98,8 @@ def login():
                 res = clients.get(c_num)
                 if res:
                     col1, col2, col3 = st.columns(3)
-                    #with col1:
-                       # st.image("measure_t.png")
+                    with col1:
+                        st.image("measure_t.png")
                     with col2:
                         st.markdown("* All Measurements In INCHES")
                         st.table(res)
@@ -227,8 +241,8 @@ def login():
                 res = clients.get(s_c_num)
                 if res:
                     col1, col2 = st.columns(2)
-                   # with col1:
-                      #  st.image("measure_t.png")
+                    with col1:
+                        st.image("measure_t.png")
                     with col2:
                         st.markdown("* All Measurements In INCHES")
                         # Added s_c_num to keys so they refresh when the mobile number changes
