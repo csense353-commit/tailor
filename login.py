@@ -111,7 +111,7 @@ def login():
                             
                         st.markdown(f"*Order ID: {order_id}*")
                         st.markdown(f"*Date: {date.today().strftime("%d-%m-%Y")}*")
-                        del_date = st.date_input("Delivery Date", min_value=today,format="DD-MM-YYYY")
+                        del_date = st.date_input("Delivery Date", min_value=date.today().strftime("%d-%m-%Y"),format="DD-MM-YYYY")
                         items = st.number_input("Items", step=1, min_value=1)
                         note = st.text_area("Note", max_chars=500)
                         
