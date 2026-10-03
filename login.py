@@ -110,8 +110,8 @@ def login():
                             order_id = max([int(k) for k in orders.keys()]) + 1
                             
                         st.markdown(f"*Order ID: {order_id}*")
-                        st.markdown(f"*Date: {date.today()}*")
-                        del_date = st.date_input("Delivery Date", min_value=date.today())
+                        st.markdown(f"*Date: {date.today().strftime("%d-%m-%Y")}*")
+                        del_date = st.date_input("Delivery Date", min_value=date.today().strftime("%d-%m-%Y")
                         items = st.number_input("Items", step=1, min_value=1)
                         note = st.text_area("Note", max_chars=500)
                         
@@ -134,7 +134,7 @@ def login():
                                     saved_count += 1
                                     
                             order_data = {
-                                "Date": str(datetime.today().date()),
+                                "Date": str(datetime.today().date().strftime("%d-%m-%Y")),
                                 "Delivery": str(del_date),
                                 "Items": items,
                                 "Note": note,
