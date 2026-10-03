@@ -60,8 +60,8 @@ def login():
                 if "Delivery" in df_orders.columns:
                     df_orders["Delivery_dt"] = pd.to_datetime(df_orders["Delivery"]).dt.date
                     
-                    today = date.today()
-                    tomorrow = today + timedelta(days=1)
+                    today = date.today().strftime("%d-%m-%Y")
+                    tomorrow = (today + timedelta(days=1)).strftime("%d-%m-%Y")
                     
                     # 1. Delayed orders (Delivery date < today and not delivered)
                     delayed_orders = df_orders[
