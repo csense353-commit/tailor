@@ -38,7 +38,7 @@ def show_delivery_alert(delayed_df, urgent_df):
     except Exception:
         pass
     
-    if st.button("Acknowledge & Stop Alarm", use_container_width=True):
+    if st.button("Acknowledge & Stop Alarm", width='stretch',type='primary'):
         st.session_state.delivery_alert_acknowledged = True
         st.rerun()
 
@@ -117,7 +117,7 @@ def login():
                         
                         uploaded_files = st.file_uploader("Choose images...", type=['jpg', 'jpeg', 'png'], accept_multiple_files=True)
                         
-                        if st.button("Add Order", use_container_width=True):
+                        if st.button("Add Order", width='stretch',type='primary'):
                             saved_count = 0
                             if uploaded_files:
                                 for index, uploaded_file in enumerate(uploaded_files):
@@ -196,7 +196,7 @@ def login():
                         
                         new_status = st.select_slider("Order Status", options=status_options, value=default_value, key=f"slider_{or_id}")
                         
-                        if st.button("Update Status", key=f"btn_update_status_{or_id}", use_container_width=True):
+                        if st.button("Update Status", key=f"btn_update_status_{or_id}", width='stretch',type='primary'):
                             if update_order_status("orders.json", int(or_id), new_status):
                                 st.success(f"Order Status updated to **{new_status}**!")
                                 try:
@@ -213,7 +213,7 @@ def login():
                         
                         # --- DELETE ORDER SECTION ---
                         st.markdown("### Delete Order")
-                        if st.button("🗑️ Delete Order & Images", key=f"btn_delete_{or_id}", use_container_width=True):
+                        if st.button("🗑️ Delete Order & Images", key=f"btn_delete_{or_id}", width='stretch',type='primary'):
                             if delete_order("orders.json", int(or_id)):
                                 st.success(f"Order #{or_id} and its images have been deleted successfully!")
                                 try:
@@ -257,7 +257,7 @@ def login():
                         sh = st.number_input("Shoulder", value=float(res.get("Shoulder", 0)), key=f"up_sh_{s_c_num}")
                         b = st.number_input('Bicep', value=float(res.get("Bicep", 0)), key=f"up_b_{s_c_num}")
                         
-                        if st.button("Update Client Data", key=f"btn_update_{s_c_num}", use_container_width=True):
+                        if st.button("Update Client Data", key=f"btn_update_{s_c_num}", width='stretch',type='primary'):
                             data = {"Height": h, "Arm Length": al, "Leg Length": ll, "Thigh": th, "Hip": hip, "Waist": w, 'Chest': c, 'Armpit': ap, "Shoulder": sh, "Bicep": b}
                             if add_data("clients.json", data, s_c_num):
                                 st.success("Client Updated Successfully!")
@@ -288,7 +288,7 @@ def login():
                         sh = st.number_input("Shoulder", key=f"new_sh_{s_c_num}")
                         b = st.number_input('Bicep', key=f"new_b_{s_c_num}")
                         
-                        if st.button("Add New Client", key=f"btn_add_{s_c_num}", use_container_width=True):
+                        if st.button("Add New Client", key=f"btn_add_{s_c_num}", width='stretch',type='primary'):
                             data = {"Height": h, "Arm Length": al, "Leg Length": ll, "Thigh": th, "Hip": hip, "Waist": w, 'Chest': c, 'Armpit': ap, "Shoulder": sh, "Bicep": b}
                             if add_data("clients.json", data, s_c_num):
                                 st.success("New Client Added!")
